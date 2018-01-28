@@ -17,8 +17,8 @@ class ManageableTest extends TestCase
             'title' => 'some title',
         ]);
 
-        $this->assertEquals($user->id, $order->creator->id);
-        $this->assertNotNull($order->created_by);
+        $this->assertTrue($order->creator->is($user));
+        $this->assertNotNull($order->fresh()->created_by);
     }
 
     /** @test */
@@ -34,9 +34,8 @@ class ManageableTest extends TestCase
         $order->title = 'some new title';
         $order->save();
 
-        $this->assertEquals($user->id, $order->editor->id);
-        $this->assertNotNull($order->updated_by);
-        $this->assertEquals('some new title', $order->fresh()->title);
+        $this->assertTrue($order->editor->is($user));
+        $this->assertNotNull($order->fresh()->updated_by);
     }
 
     /** @test */
@@ -47,6 +46,9 @@ class ManageableTest extends TestCase
         $order = Order::create([
             'title' => 'some title',
         ]);
+
+        $order->title = 'some new title';
+        $order->save();
 
         $this->assertNull($order->created_by);
         $this->assertNull($order->updated_by);
