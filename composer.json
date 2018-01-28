@@ -1,0 +1,46 @@
+{
+    "name": "signifly/laravel-manageable",
+    "description": "Track users who manages models in your Laravel app",
+    "homepage": "https://github.com/signifly/laravel-manageable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Morten Poul Jensen",
+            "email": "mpj@signifly.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "illuminate/support": "^5.5",
+        "illuminate/database": "^5.5"
+    },
+    "require-dev": {
+        "orchestra/database": "^3.5",
+        "orchestra/testbench": "^3.5",
+        "phpunit/phpunit": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Signifly\\Manageable\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Signifly\\Manageable\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Signifly\\Manageable\\ManageableServiceProvider"
+            ]
+        }
+    }
+}
