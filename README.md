@@ -1,4 +1,4 @@
-# Track users who manages models in your Laravel app
+# Track users who manage models in your Laravel app
 
 The `signifly/laravel-manageable` package allows you to easily track who creates/updates your models.
 
