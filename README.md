@@ -9,6 +9,9 @@ All you have to do to get started is:
 Schema::create('orders', function (Blueprint $table) {
     // ...
     $table->manageable();
+
+    // if you want to change the name of the foreignTable for users and foreignKey
+    $table->manageable('some_users_table', 'u_id');
 });
 
 // 2. Add the Manageable trait to your model

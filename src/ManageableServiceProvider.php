@@ -14,18 +14,18 @@ class ManageableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blueprint::macro('manageable', function ($table = 'users') {
+        Blueprint::macro('manageable', function ($foreignTable = 'users', $foreignKey = 'id') {
             $this->unsignedInteger('created_by')->nullable()->index();
             $this->unsignedInteger('updated_by')->nullable()->index();
 
             $this->foreign('created_by')
-                ->references('id')
-                ->on($table)
+                ->references($foreignKey)
+                ->on($foreignTable)
                 ->onDelete('cascade');
 
             $this->foreign('updated_by')
-                ->references('id')
-                ->on($table)
+                ->references($foreignKey)
+                ->on($foreignTable)
                 ->onDelete('cascade');
         });
     }
