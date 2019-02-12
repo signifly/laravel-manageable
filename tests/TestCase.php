@@ -2,9 +2,9 @@
 
 namespace Signifly\Manageable\Test;
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Signifly\Manageable\ManageableServiceProvider;
 
@@ -21,9 +21,9 @@ abstract class TestCase extends Orchestra
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
         $app['config']->set('app.key', 'base64:9e0yNQB60wgU/cqbP09uphPo3aglW3iQJy+u4JQgnQE=');
     }
@@ -63,8 +63,8 @@ abstract class TestCase extends Orchestra
         $now = Carbon::now()->toDateTimeString();
 
         DB::table('users')->insert([
-            'name' => 'John Doe',
-            'token' => md5('token'),
+            'name'       => 'John Doe',
+            'token'      => md5('token'),
             'created_at' => $now,
             'updated_at' => $now,
         ]);
