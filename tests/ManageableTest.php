@@ -2,13 +2,13 @@
 
 namespace Signifly\Manageable\Test;
 
-use Signifly\Manageable\Test\Models\User;
 use Signifly\Manageable\Test\Models\Order;
+use Signifly\Manageable\Test\Models\User;
 
 class ManageableTest extends TestCase
 {
     /** @test */
-    function it_tracks_who_creates_an_order()
+    public function it_tracks_who_creates_an_order()
     {
         $user = User::first();
         $this->actingAs($user);
@@ -22,7 +22,7 @@ class ManageableTest extends TestCase
     }
 
     /** @test */
-    function it_tracks_who_updates_an_order()
+    public function it_tracks_who_updates_an_order()
     {
         $user = User::first();
         $this->actingAs($user);
@@ -39,7 +39,7 @@ class ManageableTest extends TestCase
     }
 
     /** @test */
-    function it_does_not_track_if_a_user_is_not_authenticated()
+    public function it_does_not_track_if_a_user_is_not_authenticated()
     {
         $user = User::first();
 
