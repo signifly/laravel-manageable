@@ -10,7 +10,7 @@ use Signifly\Manageable\ManageableServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
