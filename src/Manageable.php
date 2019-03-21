@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait Manageable
 {
-    protected static function bootManageable()
+    protected static function bootManageable(): void
     {
         static::creating(function (Model $model) {
             $model->setManageable('created_by', 'creator');
