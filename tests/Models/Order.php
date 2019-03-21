@@ -2,8 +2,8 @@
 
 namespace Signifly\Manageable\Test\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Signifly\Manageable\Manageable;
+use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
