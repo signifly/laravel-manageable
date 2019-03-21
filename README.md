@@ -14,10 +14,10 @@ All you have to do to get started is:
 // 1. Add required columns to your table by using our macro manageable
 Schema::create('orders', function (Blueprint $table) {
     // ...
-    $table->manageable();
+    $table->manageable(); // Uses big integer by default in v2.0.0
 
-    // if you want to change the name of the foreignTable for users and foreignKey
-    $table->manageable('some_users_table', 'u_id');
+    // params: $bigIntegers (default: true), $foreignTable (default: 'users'), $foreignKey (default: 'id')
+    $table->manageable(false, 'some_users_table', 'u_id');
 });
 
 // 2. Add the Manageable trait to your model
