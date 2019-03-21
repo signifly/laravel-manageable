@@ -14,9 +14,14 @@ class ManageableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blueprint::macro('manageable', function ($foreignTable = 'users', $foreignKey = 'id') {
-            $this->unsignedInteger('created_by')->nullable()->index();
-            $this->unsignedInteger('updated_by')->nullable()->index();
+        Blueprint::macro('manageable', function ($bigIntegers = false, $foreignTable = 'users', $foreignKey = 'id') {
+            if ($bigIntegers) {
+                $this->unsignedBigInteger('created_by')->nullable()->index();
+                $this->unsignedBigInteger('updated_by')->nullable()->index();
+            } else {
+                $this->unsignedInteger('created_by')->nullable()->index();
+                $this->unsignedInteger('updated_by')->nullable()->index();
+            }
 
             $this->foreign('created_by')
                 ->references($foreignKey)
@@ -36,6 +41,5 @@ class ManageableServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-    }
+    { }
 }
