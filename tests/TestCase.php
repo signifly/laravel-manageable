@@ -54,7 +54,7 @@ abstract class TestCase extends Orchestra
             $table->increments('id');
             $table->string('title');
             $table->timestamps();
-            $table->manageable();
+            $table->manageable(false);
         });
     }
 
