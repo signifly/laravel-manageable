@@ -4,6 +4,7 @@ namespace Signifly\Manageable;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait Manageable
 {
@@ -18,27 +19,27 @@ trait Manageable
         });
     }
 
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(config('auth.providers.users.model'), 'created_by');
     }
 
-    public function editor()
+    public function editor(): BelongsTo
     {
         return $this->belongsTo(config('auth.providers.users.model'), 'updated_by');
     }
 
-    public function hasCreator() : bool
+    public function hasCreator(): bool
     {
         return ! is_null($this->created_by);
     }
 
-    public function hasEditor() : bool
+    public function hasEditor(): bool
     {
         return ! is_null($this->updated_by);
     }
 
-    protected function setManageable(string $type, string $relation)
+    protected function setManageable(string $type, string $relation): void
     {
         if (! isset($this->{$type}) && Auth::check()) {
             $this->{$type} = Auth::id();
