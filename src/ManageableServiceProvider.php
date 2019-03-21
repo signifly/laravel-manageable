@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 class ManageableServiceProvider extends ServiceProvider
 {
     protected $createdBy = 'created_by';
-    protected $createdBy = 'updated_by';
+    protected $updatedBy = 'updated_by';
 
     /**
      * Bootstrap the application services.
