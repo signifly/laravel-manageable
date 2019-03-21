@@ -1,5 +1,11 @@
 # Track users who manage models in your Laravel app
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/signifly/laravel-manageable.svg?style=flat-square)](https://packagist.org/packages/signifly/laravel-manageable)
+[![Build Status](https://img.shields.io/travis/signifly/laravel-manageable/master.svg?style=flat-square)](https://travis-ci.org/signifly/laravel-manageable)
+[![StyleCI](https://styleci.io/repos/119214202/shield?branch=master)](https://styleci.io/repos/119214202)
+[![Quality Score](https://img.shields.io/scrutinizer/g/signifly/laravel-manageable.svg?style=flat-square)](https://scrutinizer-ci.com/g/signifly/laravel-manageable)
+[![Total Downloads](https://img.shields.io/packagist/dt/signifly/laravel-manageable.svg?style=flat-square)](https://packagist.org/packages/signifly/laravel-manageable)
+
 The `signifly/laravel-manageable` package allows you to easily track who creates/updates your models.
 
 All you have to do to get started is:

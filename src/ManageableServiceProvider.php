@@ -7,6 +7,9 @@ use Illuminate\Database\Schema\Blueprint;
 
 class ManageableServiceProvider extends ServiceProvider
 {
+    protected $createdBy = 'created_by';
+    protected $createdBy = 'updated_by';
+
     /**
      * Bootstrap the application services.
      *
@@ -14,16 +17,23 @@ class ManageableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blueprint::macro('manageable', function ($foreignTable = 'users', $foreignKey = 'id') {
-            $this->unsignedInteger('created_by')->nullable()->index();
-            $this->unsignedInteger('updated_by')->nullable()->index();
+        Blueprint::macro('manageable', function ($bigIntegers = true, $foreignTable = 'users', $foreignKey = 'id') {
+            $createdBy = $bigIntegers
+                ? $this->unsignedBigInteger($this->createdBy)
+                : $this->unsignedInteger($this->createdBy);
+            $updatedBy = $bigIntegers
+                ? $this->unsignedBigInteger($this->updatedBy)
+                : $this->unsignedInteger($this->updatedBy);
 
-            $this->foreign('created_by')
+            $createdBy->nullable()->index();
+            $createdBy->nullable()->index();
+
+            $this->foreign($this->createdBy)
                 ->references($foreignKey)
                 ->on($foreignTable)
                 ->onDelete('cascade');
 
-            $this->foreign('updated_by')
+            $this->foreign($this->updatedBy)
                 ->references($foreignKey)
                 ->on($foreignTable)
                 ->onDelete('cascade');
