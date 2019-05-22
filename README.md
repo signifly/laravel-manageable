@@ -14,7 +14,7 @@ All you have to do to get started is:
 // 1. Add required columns to your table by using our macro manageable
 Schema::create('orders', function (Blueprint $table) {
     // ...
-    $table->manageable(); // Uses big integer by default in v2.0.0
+    $table->manageable();
 
     // params: $bigIntegers (default: true), $foreignTable (default: 'users'), $foreignKey (default: 'id')
     $table->manageable(false, 'some_users_table', 'u_id');
@@ -29,8 +29,8 @@ class Order extends Model
 
 The macro `manageable` adds the following to your table:
 ```php
-$this->unsignedInteger('created_by')->nullable()->index();
-$this->unsignedInteger('updated_by')->nullable()->index();
+$this->unsignedBigInteger('created_by')->nullable()->index();
+$this->unsignedBigInteger('updated_by')->nullable()->index();
 
 $this->foreign('created_by')
     ->references('id')
@@ -51,19 +51,19 @@ Until further documentation is provided, please have a look at the tests.
 You can install the package via composer:
 
 ```bash
-$ composer require signifly/laravel-manageable
+composer require signifly/laravel-manageable
 ```
 
 The package will automatically register itself.
 
 You can publish the config with:
 ```bash
-$ php artisan vendor:publish --provider="Signifly\Manageable\ManageableServiceProvider"
+php artisan vendor:publish --provider="Signifly\Manageable\ManageableServiceProvider"
 ```
 
 ## Testing
 ```bash
-$ composer test
+composer test
 ```
 
 ## Security
