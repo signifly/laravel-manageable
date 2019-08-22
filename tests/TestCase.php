@@ -5,6 +5,7 @@ namespace Signifly\Manageable\Test;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
+use Signifly\Manageable\Test\Models\User;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Signifly\Manageable\ManageableServiceProvider;
 
@@ -56,6 +57,8 @@ abstract class TestCase extends Orchestra
             $table->timestamps();
             $table->manageable(false);
         });
+
+        $this->app['config']->set('auth.providers.users.model', User::class);
     }
 
     protected function seedTables()
@@ -64,6 +67,13 @@ abstract class TestCase extends Orchestra
 
         DB::table('users')->insert([
             'name'       => 'John Doe',
+            'token'      => md5('token'),
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        DB::table('users')->insert([
+            'name'       => 'Jane Doe',
             'token'      => md5('token'),
             'created_at' => $now,
             'updated_at' => $now,
