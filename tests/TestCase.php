@@ -6,11 +6,14 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Signifly\Manageable\Test\Models\User;
+use Illuminate\Foundation\Testing\WithFaker;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Signifly\Manageable\ManageableServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
+    use WithFaker;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -36,13 +39,13 @@ abstract class TestCase extends Orchestra
         ];
     }
 
-    protected function setUpDatabase()
+    protected function setUpDatabase(): void
     {
         $this->createTables();
         $this->seedTables();
     }
 
-    protected function createTables()
+    protected function createTables(): void
     {
         $this->app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
             $table->increments('id');
@@ -61,22 +64,16 @@ abstract class TestCase extends Orchestra
         $this->app['config']->set('auth.providers.users.model', User::class);
     }
 
-    protected function seedTables()
+    protected function seedTables(): void
     {
-        $now = Carbon::now()->toDateTimeString();
+        $this->createUser(['name' => 'John Doe']);
+    }
 
-        DB::table('users')->insert([
-            'name'       => 'John Doe',
-            'token'      => md5('token'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
-
-        DB::table('users')->insert([
-            'name'       => 'Jane Doe',
-            'token'      => md5('token'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
+    protected function createUser(array $data = []): User
+    {
+        return User::create(array_merge([
+            'name' => $this->faker->name,
+            'token' => $this->faker->uuid,
+        ], $data));
     }
 }

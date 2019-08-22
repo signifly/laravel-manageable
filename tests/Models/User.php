@@ -9,6 +9,7 @@ class User extends Model implements Authenticatable
 {
     protected $fillable = [
         'name',
+        'token',
     ];
 
     /**

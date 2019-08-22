@@ -45,8 +45,8 @@ class ManageableTest extends TestCase
     /** @test */
     public function it_updates_the_editor()
     {
-        $userA = User::first();
-        $userB = User::latest()->first();
+        $userA = $this->createUser(['name' => 'user-a']);
+        $userB = $this->createUser(['name' => 'user-b']);
         $this->actingAs($userA);
 
         $order = Order::create([
