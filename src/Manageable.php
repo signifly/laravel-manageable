@@ -41,7 +41,7 @@ trait Manageable
 
     protected function setManageable(string $type, string $relation): void
     {
-        if (! isset($this->{$type}) && Auth::check()) {
+        if (Auth::check()) {
             $this->{$type} = Auth::id();
             $this->setRelation($relation, Auth::user());
         }
