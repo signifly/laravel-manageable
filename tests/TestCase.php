@@ -2,8 +2,6 @@
 
 namespace Signifly\Manageable\Test;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Signifly\Manageable\Test\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
