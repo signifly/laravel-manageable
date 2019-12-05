@@ -25,12 +25,12 @@ class ManageableServiceProvider extends ServiceProvider
             $this->foreign('created_by')
                 ->references($foreignKey)
                 ->on($foreignTable)
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
             $this->foreign('updated_by')
                 ->references($foreignKey)
                 ->on($foreignTable)
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 
