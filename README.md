@@ -35,12 +35,12 @@ $this->unsignedBigInteger('updated_by')->nullable()->index();
 $this->foreign('created_by')
     ->references('id')
     ->on('users')
-    ->onDelete('cascade');
+    ->onDelete('set null');
 
 $this->foreign('updated_by')
     ->references('id')
     ->on('users')
-    ->onDelete('cascade');
+    ->onDelete('set null');
 ```
 
 ## Documentation
