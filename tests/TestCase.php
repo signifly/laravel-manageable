@@ -3,10 +3,10 @@
 namespace Signifly\Manageable\Test;
 
 use Illuminate\Database\Schema\Blueprint;
-use Signifly\Manageable\Test\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Signifly\Manageable\ManageableServiceProvider;
+use Signifly\Manageable\Test\Models\User;
 
 abstract class TestCase extends Orchestra
 {

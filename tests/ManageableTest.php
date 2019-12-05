@@ -2,8 +2,8 @@
 
 namespace Signifly\Manageable\Test;
 
-use Signifly\Manageable\Test\Models\User;
 use Signifly\Manageable\Test\Models\Order;
+use Signifly\Manageable\Test\Models\User;
 
 class ManageableTest extends TestCase
 {
