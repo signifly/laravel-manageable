@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-manageable` will be documented in this file
 
+## v2.3.1 - 2020-09-11
+
+- Add support for Laravel 8
+
 ## v2.3.0 - 2020-03-03
 - Add support for Laravel 7
 - Drop support for Laravel 5.x
