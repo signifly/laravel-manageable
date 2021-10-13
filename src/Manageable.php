@@ -21,12 +21,12 @@ trait Manageable
 
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(config('auth.providers.users.model'), 'created_by');
+        return $this->belongsTo($this->getManageableUsersModel(), 'created_by');
     }
 
     public function editor(): BelongsTo
     {
-        return $this->belongsTo(config('auth.providers.users.model'), 'updated_by');
+        return $this->belongsTo($this->getManageableUsersModel(), 'updated_by');
     }
 
     public function hasCreator(): bool
@@ -41,9 +41,27 @@ trait Manageable
 
     protected function setManageable(string $type, string $relation): void
     {
-        if (Auth::check()) {
-            $this->{$type} = Auth::id();
-            $this->setRelation($relation, Auth::user());
+        $guard = $this->getManageableGuard();
+
+        if ($guard->check()) {
+            $this->{$type} = $guard->id();
+            $this->setRelation($relation, $guard->user());
         }
+    }
+
+    protected function getManageableUsersModel()
+    {
+        return method_exists($this, 'manageableUsersModel')
+            ? $this->manageableUsersModel()
+            : ($this->manageableUsersModel ?? config('auth.providers.users.model'));
+    }
+
+    protected function getManageableGuard()
+    {
+        $manageableGuardName = method_exists($this, 'manageableGuardName')
+            ? $this->manageableGuardName()
+            : ($this->manageableGuardName ?? config('auth.defaults.guard'));
+
+        return Auth::guard($manageableGuardName);
     }
 }
