@@ -14,7 +14,11 @@ class ManageableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blueprint::macro('manageable', function ($bigIntegers = true, $foreignTable = 'users', $foreignKey = 'id') {
+        $bigIntegers = config('manageable.big_integers', true);
+        $foreignTable = config('manageable.foreign_table', 'users');
+        $foreignId = config('manageable.foreign_id', 'id');
+
+        Blueprint::macro('manageable', function ($bigIntegers, $foreignTable, $foreignKey) {
             $bigIntegers
                 ? $this->unsignedBigInteger('created_by')->nullable()->index()
                 : $this->unsignedInteger('created_by')->nullable()->index();
@@ -32,6 +36,10 @@ class ManageableServiceProvider extends ServiceProvider
                 ->on($foreignTable)
                 ->onDelete('set null');
         });
+
+        $this->publishes([
+            __DIR__.'/../config/manageable.php' => config_path('manageable.php')
+        ], 'config');
     }
 
     /**
